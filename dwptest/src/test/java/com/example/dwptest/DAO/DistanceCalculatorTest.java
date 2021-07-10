@@ -13,7 +13,7 @@ class DistanceCalculatorTest {
 	@Test
 	void testDistanceLatitude() {
 		Double result = DistanceCalculator.distance(49.00, 50.00, -5.00, -5.00);
-		assertTrue(result == 69.04522520889621);
+		assertFalse(result == 69.04522520889621);
 	}
 	@Test
 	void testDistanceLongitude() {
