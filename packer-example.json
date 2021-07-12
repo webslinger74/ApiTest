@@ -12,7 +12,6 @@
   "provisioners": [{
     "type": "shell",
     "scripts": ["scripts/install_software.sh"],
-    "execute_command" : "",
     "pause_before": "20s"
   }]
 }
