@@ -9,8 +9,8 @@
       - debug:
           var: uptimeoutput.stdout_lines
           
- - name:  Copying jar to remote EC2 container
-   hosts:  all
+ - name: Copying jar to remote EC2 container
+   hosts: all
    tasks:
      - name: Copying jar with playbook
        become: true
