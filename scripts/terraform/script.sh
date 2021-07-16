@@ -1,7 +1,7 @@
 !#/bin/bash
 
 echo "install docker starting"
-sudo yum update
+sudo yum update -y
 sudo yum install -y docker
 echo "docker installed"
 # sudo service docker start
