@@ -48,8 +48,7 @@ resource "aws_security_group" "ingress-all-test" {
   }
 }
 
-resource "aws_eip" "lb" {
-  name = "elastic_ip_server_1"
+resource "aws_eip" "elastic-ip-server-1" {
   instance = "aws_instance.server1"
   }
 
