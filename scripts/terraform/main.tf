@@ -49,7 +49,7 @@ resource "aws_security_group" "ingress-all-test" {
 }
 
 resource "aws_eip" "lb" {
-  instance = "aws_instance.server1.terraform-example"
+  instance = "aws_instance.server1.id"
   }
 
 resource "aws_key_pair" "aws-key" {
