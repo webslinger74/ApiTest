@@ -7,5 +7,5 @@ variable "PATH_TO_PRIVATE_KEY" {
 }
 
 variable "INSTANCE_USERNAME" {
-    default = "jenkins"
+    default = "ec2-user"
 }
