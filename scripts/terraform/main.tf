@@ -33,7 +33,8 @@ resource "aws_instance" "server1" {
 #   name = "terraform-example-instance"
 # }
 
-resource "aws_key_pair "aws-key" {
+resource "aws_key_pair" "aws-key" {
+  key_name = "aws-key"
   public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
    
