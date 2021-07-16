@@ -3,6 +3,15 @@ provider "aws" {
   region = "us-east-2"
 }
 
+resource "aws_eip" "lb" {
+  vpc = true
+  }
+
+resource "aws_eip_association" "eip_assoc" {
+  instance_id = aws_instance.server1.id
+  allocation_id = aws_eip.lb.id
+}
+
 resource "aws_instance" "server1" {
   ami = "ami-0233c2d874b811deb"
   instance_type= "t2.micro"
@@ -47,10 +56,6 @@ resource "aws_security_group" "ingress-all-test" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-resource "aws_eip" "lb" {
-  instance = "aws_instance.server1.id"
-  }
 
 resource "aws_key_pair" "aws-key" {
   key_name = "my_aws"
