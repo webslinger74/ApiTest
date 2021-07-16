@@ -1,5 +1,5 @@
 provider "aws" {
-  profile = "default
+  profile = "default     // this picks up the ./aws/credentials file
   region = "us-east-2"
 }
 
