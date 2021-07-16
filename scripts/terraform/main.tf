@@ -9,15 +9,15 @@ resource "aws_instance" "server1" {
   tags = {
     Name = "terraform-example"
 }
-  key_name = aws_key_pair.stekeyterra.key_name
+  key_name = aws_key_pair.aws-key.key_name
 }
 
 resource "aws_security_group" "instance" {
   name = "terraform-example-instance"
 }
 
-resource "aws_key_pair "skekeyterra" {
-  key_name = "stekeyterra"
+resource "aws_key_pair "aws-key" {
+  key_name = "aws-key"
   public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
    
