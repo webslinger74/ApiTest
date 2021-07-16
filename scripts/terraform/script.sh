@@ -6,6 +6,4 @@ sudo yum install -y docker
 echo "docker installed"
 service docker start
 echo "docker daemon started"
-# echo "starting building image"
-# docker build .
-# echo "ending building image"
+sudo docker build -t some-content-nginx .
