@@ -49,7 +49,7 @@ resource "aws_security_group" "ingress-all-test" {
 }
 
 resource "aws_key_pair" "aws-key" {
-  key_name = "aws-key"
+  key_name = "my_aws"
   public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
    
