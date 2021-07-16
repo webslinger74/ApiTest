@@ -29,9 +29,9 @@ resource "aws_instance" "server1" {
 }
 }
 
-resource "aws_security_group" "instance" {
-  name = "terraform-example-instance"
-}
+# resource "aws_security_group" "instance" {
+#   name = "terraform-example-instance"
+# }
 
 resource "aws_key_pair "aws-key" {
   key_name = "aws-key"
