@@ -9,7 +9,7 @@ resource "aws_instance" "server1" {
   tags = {
     Name = "terraform-example"
 }
-  security_groups = ["${aws_security_group.ingress-all-test.id}"]
+  security_groups = ["${aws_security_group.ingress-all-test.name}"]
   key_name = aws_key_pair.aws-key.key_name
   provisioner "file" {
     source = "script.sh"
