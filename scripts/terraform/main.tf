@@ -9,6 +9,7 @@ resource "aws_instance" "server1" {
   tags = {
     Name = "terraform-example"
 }
+  security_groups = ["${aws_security_group.ingress-all-test.id}"]
   key_name = aws_key_pair.aws-key.key_name
   provisioner "file" {
     source = "script.sh"
@@ -29,9 +30,22 @@ resource "aws_instance" "server1" {
 }
 }
 
-# resource "aws_security_group" "instance" {
-#   name = "terraform-example-instance"
-# }
+resource "aws_security_group" "ingress-all-test" {
+  name = "terraform-example-instance"
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+      ]
+    from_port = 22
+    protocol = "tcp"
+}
+  egress {
+    from_port = o
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 resource "aws_key_pair" "aws-key" {
   key_name = "aws-key"
