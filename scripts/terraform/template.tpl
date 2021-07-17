@@ -1,1 +1,1 @@
-EC2_IP = ${ec2_ip}
+EC2_IP_ADDRESS = ${ec2_ip}
