@@ -1,9 +1,9 @@
 !#/bin/bash
 
 echo "install docker starting"
-sudo yum update -y
-sudo yum install -y docker
-echo "docker installed"
+# sudo yum update -y
+# sudo yum install -y docker
+# echo "docker installed"
 # sudo service docker start
 # echo "docker daemon started"
 # sudo docker build -t some-content-nginx ../.
