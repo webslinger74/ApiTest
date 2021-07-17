@@ -3,6 +3,7 @@
     hosts: all
     tasks:
       - name: Execute the Uptime command over Command module
+        become: true 
         register: uptimeoutput
         command: "uptime"
 
