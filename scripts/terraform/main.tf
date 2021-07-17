@@ -68,5 +68,9 @@ resource "aws_key_pair" "aws-key" {
   public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
+resource "local_file" "public_hosst_ids" {
+     content = "${aws_instance.server1.public_ip}"
+     filename = "ips.text"
+}
 
    
