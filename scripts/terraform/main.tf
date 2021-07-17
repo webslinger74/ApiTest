@@ -1,4 +1,4 @@
-data "locals" {
+data "locals" "someData" {
      someVariable = templatefile("./template.tpl", {
         ec2_ip = aws_instance.server1.public_ip
     })
