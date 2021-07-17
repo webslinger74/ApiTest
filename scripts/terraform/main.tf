@@ -1,3 +1,9 @@
+data "locals" {
+     someVariable = templatefile("./template.tpl", {
+        ec2_ip = aws_instance.server1.public_ip
+    })
+}
+
 provider "aws" {
   profile = "default"     // this picks up the ./aws/credentials file
   region = "us-east-2"
@@ -62,9 +68,5 @@ resource "aws_key_pair" "aws-key" {
   public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
-locals {
-    someVariable = templatefile("./template.tpl", {
-        ec2_ip = aws_instance.server1.public_ip
-    })
-}
+
    
