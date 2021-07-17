@@ -4,6 +4,6 @@ output "public_ip_address" {
 
 
 output "needed_for_ansible" {
-    value = locals.someVariable
+    value = locals.someData.someVariable
 }
 
