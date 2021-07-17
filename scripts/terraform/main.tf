@@ -61,4 +61,10 @@ resource "aws_key_pair" "aws-key" {
   key_name = "my_aws"
   public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
+
+locals {
+    someVariable = templatefile("./template.tpl", {
+        ec2_ip = aws_instance.server1.public_ip
+    })
+}
    
