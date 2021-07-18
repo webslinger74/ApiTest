@@ -13,3 +13,7 @@ variable "INSTANCE_USERNAME" {
 variable "EC2_AMI_ID" {
   default = "ami-0233c2d874b811deb"   
 }
+
+variable "INSTANCE_TYPE" {
+ default =  "t2.micro"   
+}
