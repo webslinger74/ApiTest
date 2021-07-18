@@ -22,14 +22,51 @@
           group: ec2-user
           mode: 0644
           
-  - name: Install Docker CE
+  - name: Update the apt package index
     hosts: all
-    tasks:
-      - name: Install docker
-        become: true
-        yum:
-          name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
-          update_cache: yes
+    become: yes
+    yum:
+      name: "*"
+      state: latest
+      update_cache: yes
+      
+  - name: Install packages for apt add repository over HTTPS
+    hosts: all
+    become: yes
+    yum:
+      name: "{{ packagesdep }}"
+      state: latest
+      update_cache: yes
+    vars:
+      packagesdep:
+      - git
+      - apt-transport-https
+      - ca-certificates
+      - wget
+      - software-properties-common
+      - gnupg2
+      - curl
+  - name: Add Apt signing key from official docker repo
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      state: present
+      
+  - name: add docker official repository for Debian Stretch
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
+      state: present
+      
+  - name: Index new repo into the cache
+    become: yes
+    yum:
+      name: "*"
+      state: latest
+      update_cache: yes
+      
+  - name: actually install docker
+    yum:
+      name: "docker-ce"
+      state: latest
      
   
         
