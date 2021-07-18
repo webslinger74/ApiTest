@@ -21,4 +21,63 @@
           owner: ec2-user
           group: ec2-user
           mode: 0644
-         
+          
+  - name: Update packages only
+    hosts: all
+    tasks:
+      - name: Execute the Uptime command over Command module
+        become: true
+        yum:
+          name: '*'
+          update_only: yes
+      
+  - name: Ensure a list of yum packages are installed
+    tasks:
+      - name: ensure list of yum packages are installed
+        become: true
+        yum: "{{ packages }}
+          state: latest
+          update_cache: yes
+        vars: 
+          packages:
+          - python-pip
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+          - amazon-linux-extras
+      
+      
+  - name: Add extras repository
+    tasks:
+      - name: add extra repository
+        become: true
+        shell: yum-config-manager --enable extras
+  
+  - name: Install docker-ce (centos) via amazon-linux-extras packages
+    tasks:
+      - name: Install docker
+        become: true
+        shell: "amazon-linux-extras install docker=18.06.1 -y"
+
+  - name: Enable Docker CE service at startup
+    tasks:
+      - name: enable docker
+        become: true
+        service:
+          name: docker
+          state: started
+          enabled: yes
+
+  - name: Ensure Python pip packages are installed
+    tasks:
+      - name: install pip
+        become: true
+        pip:
+          name: "{{ packages }}"
+          vars:
+            packages:
+            - boto
+            - boto3
+            - docker-compose
+  
+        
