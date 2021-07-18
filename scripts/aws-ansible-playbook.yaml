@@ -65,10 +65,8 @@
         version: "{{ item.version }}"
         state: present
       with_items:
-      - { name: docker, version: 4.4.4 }
-#       - { name: docker-py, version: 1.10.6 }
-
-        
+#       - { name: docker, version: 4.4.4 }
+      - { name: docker-py, version: 1.10.0 }
         
         
   - hosts: all
