@@ -36,8 +36,8 @@
       - name: ensure list of yum packages are installed
         become: true
         yum: "{{ packages }}"
-          state: latest
-          update_cache: yes
+        state: latest
+        update_cache: yes
         vars: 
           packages:
           - python-pip
