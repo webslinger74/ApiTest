@@ -48,13 +48,13 @@
         state: started
         enabled: yes
 
+  - hosts: all
+    tasks:
     - name: Ensure Python pip packages are installed
       pip:
         name: "{{ packages }}"
       vars:
         packages:
-        - boto
-        - boto3
-        - docker-compose
+        - bottle
           
   
