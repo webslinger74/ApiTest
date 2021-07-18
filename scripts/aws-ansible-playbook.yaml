@@ -59,18 +59,19 @@
 #         packages:
 #         - bottle
        
-    - name: install certain python modules for docker
-      pip:
-        name: "{{ item.name }}"
-        state: forcereinstall
-      with_items:
-      - { name: docker }
-#       - { name: docker-py, version: 1.10.0 }
+
         
         
   - hosts: all
     become: true
     tasks:   
+      - name: install certain python modules for docker
+        pip:
+          name: "{{ item.name }}"
+          state: forcereinstall
+          with_items:
+          - { name: docker }
+
       - name: Pull Nginx Docker image
         docker_image:
           name: nginx
