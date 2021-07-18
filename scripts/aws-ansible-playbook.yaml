@@ -32,6 +32,7 @@
           update_only: yes
       
   - name: Ensure a list of yum packages are installed
+    hosts: all
     tasks:
       - name: ensure list of yum packages are installed
         become: true
@@ -48,18 +49,21 @@
       
       
   - name: Add extras repository
+    hosts: all
     tasks:
       - name: add extra repository
         become: true
         shell: yum-config-manager --enable extras
   
-  - name: Install docker-ce (centos) via amazon-linux-extras packages
+  - name: Install docker-ce (centos) via amazon-linux-extras packageshosts: all
+    hosts: all
     tasks:
       - name: Install docker
         become: true
         shell: amazon-linux-extras install docker=18.06.1 -y
 
   - name: Enable Docker CE service at startup
+    hosts: all
     tasks:
       - name: enable docker
         become: true
@@ -69,6 +73,7 @@
           enabled: yes
 
   - name: Ensure Python pip packages are installed
+    hosts: all
     tasks:
       - name: install pip
         become: true
