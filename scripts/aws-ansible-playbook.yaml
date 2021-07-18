@@ -1,20 +1,15 @@
 ---
-  - name: Check the remote host uptime
-    hosts: all
+  - hosts: all
+    become: true
     tasks:
-      - name: Execute the Uptime command over Command module
-        become: true 
+    - name: Check the remote host uptime
         register: uptimeoutput
         command: "uptime"
 
       - debug:
           var: uptimeoutput.stdout_lines
           
-  - name: Copying jar to remote EC2 container
-    hosts: all
-    tasks:
-      - name: Copying jar with playbook
-        become: true
+    - name: Copying jar to remote EC2 container
         copy:
           src: ../dwptest/target/dwptest-0.0.1-SNAPSHOT.jar
           dest: /home/ec2-user
@@ -22,51 +17,13 @@
           group: ec2-user
           mode: 0644
           
-  - name: Update the apt package index
-    hosts: all
-    become: yes
-    yum:
-      name: "*"
-      state: latest
-      update_cache: yes
-      
-  - name: Install packages for apt add repository over HTTPS
-    hosts: all
-    become: yes
-    yum:
-      name: "{{ packagesdep }}"
-      state: latest
-      update_cache: yes
-    vars:
-      packagesdep:
-      - git
-      - apt-transport-https
-      - ca-certificates
-      - wget
-      - software-properties-common
-      - gnupg2
-      - curl
-  - name: Add Apt signing key from official docker repo
-    apt_key:
-      url: https://download.docker.com/linux/debian/gpg
-      state: present
-      
-  - name: add docker official repository for Debian Stretch
-    apt_repository:
-      repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
-      state: present
-      
-  - name: Index new repo into the cache
-    become: yes
-    yum:
-      name: "*"
-      state: latest
-      update_cache: yes
-      
-  - name: actually install docker
-    yum:
-      name: "docker-ce"
-      state: latest
-     
+    - name: Create yum repository for docker
+      yum_repository:
+        name: docker-repo
+        description: "repo for docker"
+        baseurl:  "https://download.docker.com/linux/centos/7/x86_64/stable/"
+        enabled: yes
+        gpgcheck: no
+      when: ansible_fajcts['os_family'] == 'RedHat'
+          
   
-        
