@@ -19,8 +19,8 @@ resource "aws_eip_association" "eip_assoc" {
 }
 
 resource "aws_instance" "server1" {
-  ami = ${var.EC2_AMI_ID}
-  instance_type= ${var.INSTANCE_TYPE}
+  ami = var.EC2_AMI_ID
+  instance_type= var.INSTANCE_TYPE
   tags = {
     Name = "terraform-example"
 }
