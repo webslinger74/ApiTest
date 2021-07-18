@@ -49,6 +49,7 @@
         enabled: yes
 
   - hosts: all
+    become_user: ec2-user
     tasks:
     - name: Ensure Python pip packages are installed
       pip:
