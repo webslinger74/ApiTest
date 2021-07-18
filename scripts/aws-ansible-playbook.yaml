@@ -55,7 +55,7 @@
         become: true
         shell: yum-config-manager --enable extras
   
-  - name: Install docker-ce (centos) via amazon-linux-extras packageshosts: all
+  - name: Install docker-ce (centos) 
     hosts: all
     tasks:
       - name: Install docker
