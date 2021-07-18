@@ -57,7 +57,7 @@
     tasks:
       - name: Install docker
         become: true
-        shell: "amazon-linux-extras install docker=18.06.1 -y"
+        shell: amazon-linux-extras install docker=18.06.1 -y
 
   - name: Enable Docker CE service at startup
     tasks:
