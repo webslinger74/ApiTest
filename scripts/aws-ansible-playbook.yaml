@@ -47,6 +47,12 @@
         name: docker
         state: started
         enabled: yes
+        
+        
+    - name: Pull Nginx Docker image
+      docker_image:
+        name: nginx
+        source: pull
 
   - hosts: all
     become_user: ec2-user
