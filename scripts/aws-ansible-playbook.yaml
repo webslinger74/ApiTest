@@ -23,66 +23,42 @@
           mode: 0644
           
   - name: Update packages only
-    hosts: all
-    tasks:
-      - name: Execute the Uptime command over Command module
-        become: true
-        yum:
-          name: '*'
-          update_only: yes
+      yum:
+        name: '*'
+        update_only: yes
       
   - name: Ensure a list of yum packages are installed
-    hosts: all
-    tasks:
-      - name: Ensure list of yum packages are installed
-        become: true
-        yum: "{{ packages }}"
-        state: latest
-        update_cache: yes
-        vars: 
-          packages:
-          - python-pip
-          - yum-utils
-          - device-mapper-persistent-data
-          - lvm2
-          - amazon-linux-extras
+      yum: "{{ packages }}"
+      state: latest
+      update_cache: yes
+      vars: 
+        packages:
+        - python-pip
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+        - amazon-linux-extras
       
       
   - name: Add extras repository
-    hosts: all
-    tasks:
-      - name: Add extra repository
-        become: true
-        shell: yum-config-manager --enable extras
+      shell: yum-config-manager --enable extras
   
   - name: Install docker-ce (centos) 
-    hosts: all
-    tasks:
-      - name: Install docker
-        become: true
-        shell: amazon-linux-extras install docker=18.06.1 -y
+      shell: amazon-linux-extras install docker=18.06.1 -y
 
   - name: Enable Docker CE service at startup
-    hosts: all
-    tasks:
-      - name: Enable docker
-        become: true
-        service:
-          name: docker
-          state: started
-          enabled: yes
+      service:
+        name: docker
+        state: started
+        enabled: yes
 
   - name: Ensure Python pip packages are installed
-    hosts: all
-    tasks:
-      - name: Install pip
-        become: true
-        pip:
-          name: "{{ packages }}"
-          vars:
-            packages:
-            - boto
-            - boto3
-            - docker-compose
+      pip:
+        name: "{{ packages }}"
+        vars:
+          packages:
+          - boto
+          - boto3
+          - docker-compose
   
         
