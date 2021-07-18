@@ -19,7 +19,7 @@ resource "aws_eip_association" "eip_assoc" {
 }
 
 resource "aws_instance" "server1" {
-  ami = "ami-0233c2d874b811deb"
+  ami = ${var.EC2_AMI_ID}
   instance_type= "t2.micro"
   tags = {
     Name = "terraform-example"
