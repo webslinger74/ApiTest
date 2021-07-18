@@ -52,7 +52,15 @@
     - name: Pull Nginx Docker image
       docker_image:
         name: nginx
-        source: pull
+        pull: true
+        
+    - name: Create Nginx container
+      docker_container:
+        name: nginx-cont
+        image: nginx
+        command: sleep 1d
+        state: present
+        published_ports: 8080:80
 
   - hosts: all
     become_user: ec2-user
