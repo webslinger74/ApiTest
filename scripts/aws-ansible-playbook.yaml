@@ -34,7 +34,7 @@
   - name: Ensure a list of yum packages are installed
     hosts: all
     tasks:
-      - name: ensure list of yum packages are installed
+      - name: Ensure list of yum packages are installed
         become: true
         yum: "{{ packages }}"
         state: latest
@@ -51,7 +51,7 @@
   - name: Add extras repository
     hosts: all
     tasks:
-      - name: add extra repository
+      - name: Add extra repository
         become: true
         shell: yum-config-manager --enable extras
   
@@ -65,7 +65,7 @@
   - name: Enable Docker CE service at startup
     hosts: all
     tasks:
-      - name: enable docker
+      - name: Enable docker
         become: true
         service:
           name: docker
@@ -75,7 +75,7 @@
   - name: Ensure Python pip packages are installed
     hosts: all
     tasks:
-      - name: install pip
+      - name: Install pip
         become: true
         pip:
           name: "{{ packages }}"
