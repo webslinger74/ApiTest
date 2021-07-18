@@ -23,7 +23,7 @@
         state: latest
         update_only: yes
           
-   - name: Ensure a list of yum packages are installed
+    - name: Ensure a list of yum packages are installed
       yum:
         name: "{{ packages }}"
         state: latest
