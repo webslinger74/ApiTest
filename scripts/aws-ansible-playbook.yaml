@@ -70,7 +70,7 @@
           name: "{{ item.name }}"
           state: forcereinstall
           with_items:
-          - { name: docker }
+          - { name: python3-docker }
 
       - name: Pull Nginx Docker image
         docker_image:
